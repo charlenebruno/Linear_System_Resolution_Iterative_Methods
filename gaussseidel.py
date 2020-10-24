@@ -37,14 +37,12 @@ def gaussseidel(A,b,Imax,errSeuil,x0):
     x = x0
     while iterNumber<Imax:
         xprec = x
-        inverseMatrix = np.linalg.inv(D-M)
-        DMN = inverseMatrix.dot(N)
+        inverseMatrix = np.linalg.inv(D+M)
+        DMN = inverseMatrix.dot(-N)
         DMNX = DMN.dot(x)
         DMB = inverseMatrix.dot(b)
         x =  DMNX + DMB
         err = np.linalg.norm(x-np.linalg.solve(A, b))
-        #print(x)
-        #print(err)
         if( err < errSeuil):
             return x,iterNumber
         iterNumber += 1
@@ -68,7 +66,7 @@ b = np.array([[10],
 Imax= 1000
 
 #e précision d'arret de boucle
-errSeuil = 1
+errSeuil = 0.0001
 
 
 #xo vecteur initial
@@ -78,7 +76,7 @@ x0 = np.array([[1],
 
 
 
-
+gaussseidel(A,b,Imax,errSeuil,x0)
 x,iteration = gaussseidel(A,b,Imax,errSeuil,x0)
 print("Gauss Seidel")
 print("valeur obtenue")
@@ -87,9 +85,10 @@ print(x.shape)
 print("nb iteration")
 print(iteration)
 
-#test = np.linalg.solve(A, b)
-print("valeur réelle")
-#print(test)
+test = np.linalg.solve(A, b)
+print("valeur réelle résolution linéaire")
+print(test)
+
 
 ##Part 2
 
@@ -110,8 +109,8 @@ for i in range(n):
         if(i==j+1):
             A[i][j]=1
 
-print(A)
-print(b)
+#print("A ",A)
+#print("b ",b)
 
 #on vérifie que A est à diagonale dominante
 def diagonaleDominante(A):
@@ -125,22 +124,22 @@ def diagonaleDominante(A):
                 return False
     return True
 
-testDiagonaleDominante = diagonaleDominante(A)
-print("A est elle à diagonale dominante?")
-print(testDiagonaleDominante)
+#testDiagonaleDominante = diagonaleDominante(A)
+#print("A est elle à diagonale dominante?")
+#print(testDiagonaleDominante)
 
 
 ##Résolution de Ax=b avec la méthode Cholesky
 
-print("Méthode de Cholesky")
-x = cholesky.cholesky(A,b)
-print("valeur obtenue")
-print(x)
+#print("Méthode de Cholesky")
+#x = cholesky.cholesky(A,b)
+#print("valeur obtenue de x")
+#print(x)
 
 ##Vérification résultat
-test = np.linalg.solve(A, b)
-print("valeur réelle résolution linéaire")
-print(test)
+#test = np.linalg.solve(A, b)
+#print("valeur réelle résolution linéaire")
+#print(test)
 
 ##Résolution de Ax=b avec la méthode de Gauss-Seidel
 #print("Méthode de Gauss-Seidel")

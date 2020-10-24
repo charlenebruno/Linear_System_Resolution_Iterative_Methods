@@ -33,11 +33,8 @@ def cholesky(A,b):
         for j in range(0,k):
             sumLY += L[k][j]*y[j]
         y[k] = (b[k] - sumLY)/L[k][k]
-    print("valeur obtenue")
-    print(y)
 
     for k in range(n-1,-1,-1):
-        print(k)
         sumLtx = 0
         for j in range(k+1,n):
             sumLtx += Lt[k][j]*x[j]
