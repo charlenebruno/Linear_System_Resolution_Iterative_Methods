@@ -141,10 +141,11 @@ print("valeur réelle résolution linéaire")
 print(test)
 
 ##Résolution de Ax=b avec la méthode de Gauss-Seidel
-#print("Méthode de Gauss-Seidel")
-#x = gaussseidel(A,b,Imax,errSeuil,x0)
-#print("valeur obtenue")
-#print(x)
+print("Méthode de Gauss-Seidel")
+x0 = np.ones((10,1))
+x = gaussseidel(A,b,Imax,errSeuil,x0)
+print("valeur obtenue")
+print(x)
 
 
 
